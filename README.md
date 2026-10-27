@@ -6,11 +6,11 @@ How much budget does an iOS growth team lose by reading SKAdNetwork postbacks at
 
 | Decision maker | What it sees | Week 10 profit |
 |---|---|---|
-| Blind | SKAN postbacks read as "subscribed or not" | $14,883 |
-| Predictive (this project) | Same postbacks decoded with a hybrid schema | **$19,962** |
-| Perfect information | The true week 10 value of every user | $23,138 |
+| Blind | SKAN postbacks read as "subscribed or not" | $12,278 |
+| Predictive (this project) | Same postbacks decoded with a hybrid schema | **$17,077** |
+| Perfect information | The true week 10 value of every user | $20,282 |
 
-On a $150,000 budget the predictive approach earns **34% more profit** than the blind approach and closes **62% of the gap** to perfect information. Across nine scenarios with different diminishing return and budget assumptions the closed gap stays between **58% and 65%**.
+On a $150,000 budget the predictive approach earns **39% more profit** than the blind approach and closes **60% of the gap** to perfect information. Across nine scenarios with different diminishing return and budget assumptions the closed gap stays between **54% and 64%**.
 
 ## The problem
 
@@ -36,17 +36,17 @@ Channels differ most in how long subscribers keep paying. A channel can look lik
 
 **Blind reading over funds the wrong channel.** TikTok has the best week 2 retention (87%) and collapses to 38% in week 3. Read at face value it looks like the best channel and receives the largest share ($54,000). In truth it loses money.
 
-**Subscribing is not enough.** Two values that both mean "subscribed" decode to $6.99 (CV 16) and $41.29 (CV 31). Exporting a song and the time to first generation separate lasting subscribers from short ones. Trying the text to song feature carries almost no signal (0.5% of model importance) even though nearly everyone tries it.
+**Subscribing is not enough.** Two values that both mean "subscribed" decode to $6.00 (CV 16) and $41.64 (CV 31). Exporting a song and the time to first generation separate lasting subscribers from short ones. Trying the text to song feature carries almost no signal (0.5% of model importance) even though nearly everyone tries it.
 
-**Simpson's paradox inside Meta.** The demo creative beats the UGC creative in every country tier but loses in total (1.40 vs 1.47 ROAS) because 70% of its budget went to the lowest value tier.
+**Simpson's paradox inside Meta.** The demo creative beats the UGC creative in every country tier but loses in total (1.37 vs 1.49 ROAS) because 70% of its budget went to the lowest value tier.
 
-**The model beats a channel aware baseline.** User level error drops from $2.49 to $0.93 even though the baseline is given the channel and the model is not.
+**The model beats a channel aware baseline.** User level error drops from $2.47 to $0.96 even though the baseline is given the channel and the model is not.
 
 ## Limitations
 
 * **Synthetic data.** The model recovers rules I wrote. The value of the project is the method, not the numbers.
 * **Privacy thresholds are assumed.** Apple does not publish them. I used 250 and 500 installs per cell.
-* **TikTok is still over funded.** The predictive approach cuts TikTok from $54,000 to $35,000 but the ideal is $15,000 and it labels TikTok "Hold". Some short lived subscribers behave like loyal ones on day 0.
+* **TikTok is still over funded.** The predictive approach cuts TikTok from $54,000 to $36,000 but the ideal is $15,000 and it labels TikTok "Hold". Some short lived subscribers behave like loyal ones on day 0.
 * **Channel level only.** Budget is split across channels, not creatives or countries.
 * **No postback delay in the decision.** Delays are described but not modeled.
 * **No incrementality.** All installs are treated as caused by ads.
@@ -74,4 +74,4 @@ assumptions.md                       every assumption and why
 
 ## How to run
 
-Open the notebook in Google Colab and choose Runtime → Run all. It takes under a minute. The random seed is fixed so every run produces the same world. Small differences in model results can appear across LightGBM versions.
+Open the notebook in Google Colab and choose Runtime → Run all. It takes under a minute. The random seed is fixed so every run produces the same world. Small differences in model results can appear across LightGBM versions. Run every cell once and in order: running a cell twice moves the random generator and changes the world slightly.
